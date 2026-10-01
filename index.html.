@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safe Spaces - Golden Valley School</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Tailwind Custom Colors Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandPrimary: '#12519C',
+            brandAccent: '#27A0DB',
+            brandHighlight: '#F6C401',
+          },
+          fontFamily: {
+            sans: ['Arial', 'Helvetica', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #ffffff;
+      color: #333333;
+    }
+    /* Custom focus and transition utilities */
+    .btn-transition {
+      transition: all 0.25s ease-in-out;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 20px -2px rgba(18, 81, 156, 0.08);
+    }
+    .card-shadow:hover {
+      box-shadow: 0 10px 25px -3px rgba(18, 81, 156, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo / Brand Title -->
+        <a href="#hero" class="flex flex-col group">
+          <span class="text-2xl font-bold text-brandPrimary tracking-tight group-hover:text-brandAccent transition-colors">
+            Safe Spaces
+          </span>
+          <span class="text-xs uppercase tracking-widest text-gray-500 font-semibold">
+            Golden Valley School
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#hero" class="text-sm font-semibold text-gray-700 hover:text-brandPrimary transition-colors">Home</a>
+          <a href="#what-is-safe-space" class="text-sm font-semibold text-gray-700 hover:text-brandPrimary transition-colors">What is a Safe Space</a>
+          <a href="#about-us" class="text-sm font-semibold text-gray-700 hover:text-brandPrimary transition-colors">About Us</a>
+          <a href="#dashboard" class="text-sm font-semibold text-gray-700 hover:text-brandPrimary transition-colors">Dashboard</a>
+          <a href="#get-help" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-brandAccent text-white font-semibold text-sm hover:bg-brandPrimary btn-transition shadow-sm">
+            Get Help
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" type="button" class="p-2 rounded-md text-brandPrimary hover:bg-gray-100 focus:outline-none" aria-label="Toggle navigation menu">
+            <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+      <a href="#hero" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:text-brandPrimary hover:bg-gray-50">Home</a>
+      <a href="#what-is-safe-space" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:text-brandPrimary hover:bg-gray-50">What is a Safe Space</a>
+      <a href="#about-us" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:text-brandPrimary hover:bg-gray-50">About Us</a>
+      <a href="#dashboard" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-semibold text-gray-700 hover:text-brandPrimary hover:bg-gray-50">Dashboard</a>
+      <a href="#get-help" class="mobile-nav-link block w-full text-center px-4 py-3 rounded-lg bg-brandAccent text-white font-semibold hover:bg-brandPrimary btn-transition">
+        Get Help
+      </a>
+    </div>
+  </header>
+
+  <!-- Thin Three-Color Decorative Bar directly under header -->
+  <div class="h-1.5 w-full flex">
+    <div class="w-1/3 bg-brandPrimary"></div>
+    <div class="w-1/3 bg-brandAccent"></div>
+    <div class="w-1/3 bg-brandHighlight"></div>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <main class="flex-grow">
+
+    <!-- Section 1: Hero Section -->
+    <section id="hero" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Subtle highlight badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-50 border border-amber-200 mb-6">
+          <span class="w-2.5 h-2.5 rounded-full bg-brandHighlight"></span>
+          <span class="text-xs font-semibold text-gray-700 uppercase tracking-wider">Golden Valley School Initiative</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-brandPrimary tracking-tight mb-8">
+          Everyone deserves sunshine.
+        </h1>
+
+        <!-- Statistic Callout Card -->
+        <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100 card-shadow text-left max-w-2xl mx-auto mb-10">
+          <div class="flex items-start gap-4">
+            <div class="p-3 bg-blue-50 rounded-xl shrink-0">
+              <svg class="w-8 h-8 text-brandAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <div>
+              <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-bold text-gray-800 bg-brandHighlight/30 rounded">Mental Health Research Stat</span>
+              <p class="text-base sm:text-lg text-gray-700 leading-relaxed font-medium">
+                Countries prioritizing youth mental health stability report over <strong class="text-brandPrimary font-bold">40%+ higher</strong> student well-being and sense of safety at school.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary CTA Button scrolling to #get-help -->
+        <a href="#get-help" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-brandAccent text-white text-lg font-bold hover:bg-brandPrimary btn-transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <span>Get help</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: What is a Safe Space -->
+    <section id="what-is-safe-space" class="py-16 md:py-24 bg-gray-50/50 border-t border-b border-gray-100 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <h2 class="text-3xl sm:text-4xl font-bold text-brandPrimary mb-4">
+            What is a Safe Space?
+          </h2>
+          <!-- Definition Card -->
+          <div class="p-6 bg-white rounded-2xl border border-blue-100 card-shadow inline-block w-full">
+            <p class="text-xl sm:text-2xl text-gray-700 font-medium italic">
+              "A place where everyone feels included, heard, seen, and safe."
+            </p>
+          </div>
+        </div>
+
+        <!-- Three Key Signs Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Sign 1 -->
+          <div class="bg-white p-8 rounded-2xl border border-gray-100 card-shadow flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 text-brandAccent">
+              <!-- SVG Icon: Speech / Express -->
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brandPrimary mb-3">Express opinions freely</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">
+              You can share your thoughts, feelings, and perspectives without fear of judgment, mockery, or dismissal.
+            </p>
+          </div>
+
+          <!-- Sign 2 -->
+          <div class="bg-white p-8 rounded-2xl border border-gray-100 card-shadow flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 text-brandAccent">
+              <!-- SVG Icon: Helping Hands / Heart -->
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brandPrimary mb-3">Everyone helps each other</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">
+              Community members actively look out for one another, offering support, empathy, and constructive assistance.
+            </p>
+          </div>
+
+          <!-- Sign 3 -->
+          <div class="bg-white p-8 rounded-2xl border border-gray-100 card-shadow flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 text-brandAccent">
+              <!-- SVG Icon: Group / Inclusion -->
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-brandPrimary mb-3">No one is left out</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">
+              Inclusivity is at the heart of every activity. Diversity is celebrated and everyone is invited to participate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: About Us -->
+    <section id="about-us" class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-3 py-1 rounded-full bg-yellow-100 text-xs font-bold text-gray-800 uppercase tracking-widest mb-3">Student Initiative</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-brandPrimary">About Us</h2>
+        </div>
+
+        <!-- Student Mission Text Card -->
+        <div class="bg-white p-8 sm:p-10 rounded-2xl border-l-4 border-l-brandAccent border-t border-r border-b border-gray-100 card-shadow mb-12">
+          <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
+            We are three students that want to create a website that will help people that are being bullied by giving them a space where they can feel safe and seen. Also it informs people what to do when they are being bullied or they know someone who is.
+          </p>
+        </div>
+
+        <!-- Interactive Bullying Action Guide -->
+        <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
+          <h3 class="text-xl sm:text-2xl font-bold text-brandPrimary mb-3 flex items-center gap-2">
+            <svg class="w-6 h-6 text-brandAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            What to do if you or someone else is being bullied
+          </h3>
+          <p class="text-sm text-gray-600 mb-6">Click on any strategy below to view step-by-step guidance:</p>
+
+          <div class="space-y-4" id="action-guide-accordion">
+            <!-- Tip 1 -->
+            <div class="border border-gray-200 rounded-xl bg-white overflow-hidden">
+              <button onclick="toggleAccordion('tip-1')" class="w-full text-left px-5 py-4 font-bold text-gray-800 hover:text-brandPrimary flex justify-between items-center focus:outline-none">
+                <span class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded-full bg-blue-100 text-brandPrimary text-xs flex items-center justify-center font-bold">1</span>
+                  Tell a trusted adult right away
+                </span>
+                <svg id="arrow-tip-1" class="w-5 h-5 text-gray-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="tip-1" class="hidden px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                Reach out to school counselors (like Maria Jose or Paula), a teacher, or your parents. Telling someone is not "snitching"—it is standing up for safety and well-being.
+              </div>
+            </div>
+
+            <!-- Tip 2 -->
+            <div class="border border-gray-200 rounded-xl bg-white overflow-hidden">
+              <button onclick="toggleAccordion('tip-2')" class="w-full text-left px-5 py-4 font-bold text-gray-800 hover:text-brandPrimary flex justify-between items-center focus:outline-none">
+                <span class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded-full bg-blue-100 text-brandPrimary text-xs flex items-center justify-center font-bold">2</span>
+                  Keep evidence of digital bullying
+                </span>
+                <svg id="arrow-tip-2" class="w-5 h-5 text-gray-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="tip-2" class="hidden px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                Take screenshots of hurtful messages, posts, or emails. Note down dates and times. Do not respond to cyberbullies directly; report the content instead.
+              </div>
+            </div>
+
+            <!-- Tip 3 -->
+            <div class="border border-gray-200 rounded-xl bg-white overflow-hidden">
+              <button onclick="toggleAccordion('tip-3')" class="w-full text-left px-5 py-4 font-bold text-gray-800 hover:text-brandPrimary flex justify-between items-center focus:outline-none">
+                <span class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded-full bg-blue-100 text-brandPrimary text-xs flex items-center justify-center font-bold">3</span>
+                  Stay in groups & support others
+                </span>
+                <svg id="arrow-tip-3" class="w-5 h-5 text-gray-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="tip-3" class="hidden px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                Bullies often target isolated individuals. Walk with friends in hallways and during breaks. If you see someone being excluded or mistreated, invite them over to join your group.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Dashboard -->
+    <section id="dashboard" class="py-16 md:py-24 bg-gray-50/50 border-t border-b border-gray-100 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-100 border border-yellow-300 text-xs font-bold text-gray-800 uppercase tracking-wider mb-3">
+            <span class="w-2 h-2 rounded-full bg-brandHighlight"></span>
+            Sample data
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-brandPrimary mb-3">School Well-being Dashboard</h2>
+          <p class="text-gray-600 text-sm sm:text-base">Visualizing student sense of safety, check-in activity, and peer support reporting trends.</p>
+        </div>
+
+        <!-- 3 Charts Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Chart 1: Pie Chart -->
+          <div class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brandPrimary">Students Feeling Safe at School</h3>
+              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-semibold">Sample data</span>
+            </div>
+            <div class="relative flex-grow flex items-center justify-center min-h-[260px]">
+              <canvas id="pieChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Column Chart -->
+          <div class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brandPrimary">Monthly Safe Space Check-ins</h3>
+              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-semibold">Sample data</span>
+            </div>
+            <div class="relative flex-grow flex items-center justify-center min-h-[260px]">
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Line Chart -->
+          <div class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-brandPrimary">Peer Support & Reporting Trends</h3>
+              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-semibold">Sample data</span>
+            </div>
+            <div class="relative flex-grow flex items-center justify-center min-h-[260px]">
+              <canvas id="lineChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Get Help -->
+    <section id="get-help" class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-3 py-1 rounded-full bg-red-50 text-xs font-bold text-red-600 uppercase tracking-widest mb-3">Support & Resources</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-brandPrimary mb-4">Get Help</h2>
+          
+          <div class="p-6 bg-blue-50 border border-blue-100 rounded-2xl mb-8">
+            <p class="text-xl sm:text-2xl font-bold text-brandPrimary">
+              If you don't feel safe, talk to the counselors Maria Jose and Paula.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+          <!-- Counselor Email Card -->
+          <div class="bg-white p-6 rounded-2xl border border-gray-100 card-shadow flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-blue-50 text-brandAccent flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 class="text-sm uppercase tracking-wider font-bold text-gray-500 mb-1">Student Wellness Email</h3>
+              <p class="text-base font-bold text-brandPrimary break-all mb-4">
+                studentwellnessdepartment@goldenvalley.ed.cr
+              </p>
+            </div>
+            <button onclick="copyEmailToClipboard()" id="copy-btn" class="w-full py-2.5 px-4 rounded-xl border border-brandAccent text-brandAccent font-bold text-sm hover:bg-brandAccent hover:text-white btn-transition flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              <span id="copy-btn-text">Copy Email</span>
+            </button>
+          </div>
+
+          <!-- Emergency Hotline Card -->
+          <div class="bg-white p-6 rounded-2xl border-2 border-brandHighlight card-shadow flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-brandHighlight text-gray-900 text-xs font-bold px-3 py-1 rounded-bl-lg">
+              Emergency
+            </div>
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <h3 class="text-sm uppercase tracking-wider font-bold text-gray-500 mb-1">Emergency Service</h3>
+              <p class="text-4xl font-extrabold text-brandPrimary mb-2">911</p>
+              <p class="text-xs text-gray-600">Immediate response for urgent crisis situations.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-100">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md inline-block">Available 24/7</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Message Form -->
+        <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
+          <h3 class="text-xl font-bold text-brandPrimary mb-2">Send a Message to the Counselors</h3>
+          <p class="text-sm text-gray-600 mb-6">Need advice or want to request a private chat? Leave your message here.</p>
+
+          <div id="form-success-message" class="hidden mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium">
+            Thank you! Your message has been sent securely to counselors Maria Jose and Paula. They will reach out to you soon.
+          </div>
+
+          <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="student-name" class="block text-xs font-bold text-gray-700 uppercase mb-1">Your Name (Optional)</label>
+                <input type="text" id="student-name" placeholder="Anonymous or Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brandAccent text-sm">
+              </div>
+              <div>
+                <label for="student-grade" class="block text-xs font-bold text-gray-700 uppercase mb-1">Grade / Class</label>
+                <input type="text" id="student-grade" placeholder="e.g., Grade 8" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brandAccent text-sm" required>
+              </div>
+            </div>
+
+            <div>
+              <label for="student-message" class="block text-xs font-bold text-gray-700 uppercase mb-1">Your Message</label>
+              <textarea id="student-message" rows="4" placeholder="Share what's on your mind..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brandAccent text-sm" required></textarea>
+            </div>
+
+            <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-brandAccent text-white font-bold rounded-xl hover:bg-brandPrimary btn-transition shadow-sm">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-8 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-brandPrimary"></span>
+        <span class="w-3 h-3 rounded-full bg-brandAccent"></span>
+        <span class="w-3 h-3 rounded-full bg-brandHighlight"></span>
+        <span class="text-sm font-bold text-brandPrimary ml-2">Safe Spaces</span>
+      </div>
+      <p class="text-sm text-gray-500 font-medium">
+        Golden Valley School, 2026
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Drawer Navigation Toggle Logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      } else {
+        mobileMenu.classList.remove('hidden');
+        menuIconOpen.classList.add('hidden');
+        menuIconClose.classList.remove('hidden');
+      }
+    });
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      });
+    });
+
+    // Accordion Toggle Logic
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const arrow = document.getElementById('arrow-' + id);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+    }
+
+    // Copy Email to Clipboard Logic
+    function copyEmailToClipboard() {
+      const email = 'studentwellnessdepartment@goldenvalley.ed.cr';
+      const btnText = document.getElementById('copy-btn-text');
+      
+      // Temporary textarea for iframe compatibility
+      const tempInput = document.createElement('textarea');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      btnText.innerText = 'Copied!';
+      setTimeout(() => {
+        btnText.innerText = 'Copy Email';
+      }, 2500);
+    }
+
+    // Contact Form Handler
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      document.getElementById('contact-form').reset();
+      const successMsg = document.getElementById('form-success-message');
+      successMsg.classList.remove('hidden');
+      setTimeout(() => {
+        successMsg.classList.add('hidden');
+      }, 6000);
+    }
+
+    // Initialize Chart.js Data Visualizations
+    window.onload = function() {
+      // Common Font Settings
+      Chart.defaults.font.family = 'Arial';
+      Chart.defaults.color = '#4b5563';
+
+      // 1. Pie Chart
+      const pieCtx = document.getElementById('pieChart').getContext('2d');
+      new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Feel Safe & Included', 'Sometimes Neutral', 'Need Support'],
+          datasets: [{
+            data: [78, 16, 6],
+            backgroundColor: [
+              '#12519C', // Primary
+              '#27A0DB', // Accent
+              '#F6C401'  // Highlight
+            ],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 16,
+                usePointStyle: true,
+                font: { size: 12, weight: 'bold' }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ' ' + context.label + ': ' + context.raw + '% (Sample)';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 2. Bar/Column Chart
+      const barCtx = document.getElementById('barChart').getContext('2d');
+      new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+            label: 'Check-ins',
+            data: [42, 65, 88, 105, 120],
+            backgroundColor: '#27A0DB',
+            hoverBackgroundColor: '#12519C',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f3f4f6' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+
+      // 3. Line Chart
+      const lineCtx = document.getElementById('lineChart').getContext('2d');
+      new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels: ['Term 1', 'Term 2', 'Term 3', 'Term 4'],
+          datasets: [
+            {
+              label: 'Peer Interventions',
+              data: [15, 32, 48, 64],
+              borderColor: '#12519C',
+              backgroundColor: 'rgba(18, 81, 156, 0.1)',
+              fill: true,
+              tension: 0.35,
+              pointRadius: 4,
+              pointBackgroundColor: '#12519C'
+            },
+            {
+              label: 'Bullying Reports Solved',
+              data: [20, 38, 55, 72],
+              borderColor: '#27A0DB',
+              backgroundColor: 'transparent',
+              borderDash: [5, 5],
+              tension: 0.35,
+              pointRadius: 4,
+              pointBackgroundColor: '#27A0DB'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 16,
+                usePointStyle: true,
+                font: { size: 11, weight: 'bold' }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f3f4f6' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    };
+  </script>
+</body>
+</html>
